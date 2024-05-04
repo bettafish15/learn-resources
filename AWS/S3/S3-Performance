@@ -1,0 +1,18 @@
+S3 - Baseline Performance
+	+ Amazon S3 automatically scales to high request rates, latency 100-200 ms
+	+ at least 3500 PUT/COPY/POST/DELETE or 5500 GET/HEAD requests per sec per prefix in a bucket
+
+	+ Multi-Part upload:
+		- recommended for files > 100MB, must use for files > 5GB
+		- can help parallelize upoads (speed up transfers)
+
+	+ S3 Transfer Acceleration:
+		- increase transfer speed by transferring file to an AWS edge location which will forward data
+			to the S3 bucket in the target region
+		- Compatible with multi-part upload
+
+S3 Byte-Range Fetches:
+	+ Parallelize GETs by requesting specific byte ranges
+	+ Better resilience in case of failures
+	+ can be used to speed up downloads
+	+ can be used to retrieve only partial data (eg: head of a file)

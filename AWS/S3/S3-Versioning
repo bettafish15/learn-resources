@@ -1,0 +1,5 @@
+Amazon S3 - Versioning:
+	+ You can version your files in S3
+	+ enabled at the bucket level
+	+ same key overwrite will change the version: 1,2,3,...
+	+ best practice to version buckets

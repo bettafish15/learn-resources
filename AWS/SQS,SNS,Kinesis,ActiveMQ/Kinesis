@@ -1,0 +1,5 @@
+- Kinesis Data Stream: capture, process and store streaming data, 
+  Kinesis Data Firehose: load data to data store
+  Kinesis Data Analytics: analyze data stream with sql
+  Kinesis Video Stream
+

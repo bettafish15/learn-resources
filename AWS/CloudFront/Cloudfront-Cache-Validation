@@ -1,0 +1,6 @@
+In case you update the back-end origin, cloudfront doesn't know about it and will only get the refreshed
+content after the TTL has expired
+
+However, you can force an entire partial cache refresh (bypassing TTL) by perf ing a CloudFront Invalidation
+
+You can invalidate all files or a special path (/images/*)

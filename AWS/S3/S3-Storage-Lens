@@ -1,0 +1,64 @@
+S3 - Storage Lens
+	+ Understand, analyze, optimize storage across entire AWS Organization
+	+ Discover anomalies, identify cost efficiencies, apply data protection best practices 
+		(30 days usage & activity metrics)
+	+ Aggregate data for Organization, specific accounts, regions, buckets, or prefixes
+	+ Default dashboard or create custom one
+	+ can be configured to export metrics daily to an S3 bucket (CSV, Parquet)
+
+Storage Lens - Default Dashboard
+	+ Visualize summarized insights and trends for both free and advanced metrics
+	+ Default dashboard shows Multi-Region and Multi-Account data
+	+ Preconfigured by S3
+	+ Can't be deleted but can be disabled
+
+Storage Lens - Metrics
+	+ Summary Metrics:
+		- General insights about your s3 storage
+		- StorageBytes, ObjectCount....
+		=> identify the fastest-growing (or not used) buckets and prefixes
+
+	+ Cost-Optimization Metrics:
+		- provide insights to manage and optimize your storage costs
+		- NonCurrentVersionStorageBytes, IncompleteMultipartUploadStorageBytes ....
+		=> identify buckets with incomplete multipart uploaded older than 7 days, Identify which objects
+			could be transitioned to lower-cost storage class
+
+	+ Data-Protection Metrics:
+		- Provide insights for data protection features
+		- VersioningEnabledBucketCount, MFADeleteEnabledBucketCount, SSeMKSEnalbedBucketCount, v.....
+		=> identify buckets that aren't following data-protection best practices
+
+	+ Access-Management Metrics:
+		- Provide insights for S3 Object Ownership
+		- ObjectOwnershipBucketOwnerEnforcedBucketCount...
+		=> identify which Object Ownership settings your buckets are
+
+	+ Event Metrics:
+		- Provide insights for S3 Event Notifications
+		- EventNotificationEnabledBucketCount (identify which buckets have S3 Event Noti configured)
+
+	+ Performance Metrics:
+		- Provide insights for S3 Transfer Acceleration
+		- TransferAccelerationEnabledBucketCount (identify which buckets have S3 Transfer Acce)
+
+	+ Activity Metrics:
+		- Provide insights about how your storage is requested
+		- AllRequests, GetRequests, PutRequests, v.v....
+	
+	+ Detailed Status Code Metrics:
+		- Provide insights for HTTP status codes
+		- 200OKStatusCount, 403ForbiddenErrorCount , ....
+
+Storage Lens - Free vs Paid
+	- Free metrics:
+		+ automatically avail for all
+		+ contains around 28 usage metrics
+		+ data is avail for queries 14 days
+
+	- advanced metrics and recommendations
+		+ additional paid metrics and features
+		+ advanced metrics - activity, advanced cost optimization, advanced data protection, status code
+		+ cloudwatch publishing - access metrics in cloudwatch without additional charges
+		+ prefix aggregation - collect metrics at the prefix level
+		+ data is avail for queries 15 months

@@ -1,0 +1,11 @@
+Log groups - arbitrary name, usally representing an app
+Log stream - instances with app / log files / containers
+Can define log expiration policies (never expire, 1 day to 10 years...)
+CloudWatch Logs can send logs to:
+	+ Amazon S3 (exports)
+	+ Kinesis Data Streams
+	+ Kinesis Data Firehose
+	+ AWS Lambda
+	+ OpenSearch
+
+Logs are encrypted by default

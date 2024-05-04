@@ -1,0 +1,26 @@
+Lambda @edge:
+	+ execute some form of logic at the edge
+	+ Edge func:
+		- a code that you write and attach to Cloudfront distributions
+		- Runs close to your users to minimize latency
+	+ CloudFront provides two types: CloudFront Functions & Lambda@Edge
+	+ You don't have to manage any servers, deployed globally
+
+
+	+ written in NodeJS or Python
+	+ Scales to 1000s req/sec
+	+ Used to change CloudFront requests and responses:
+		- Viewer Request: after CloudFront receives a request from a viewer
+		- Origin Request: before CloudFront forwards the request to the origin
+		- Origin Response: before CloudFront receives the response from the origin
+		- Viewer Response: before CloudFront forwards the response to the viewer
+
+	+ Author your func in one AWS Region then Cloudfront replicates to its locations
+CloudFront Functions:
+	+ Lightweight funcs written in JS
+	+ For high-scale, latency-sensitive CDN customizations
+	+ Sub-ms startup times, millions of requests/sec
+	+ Used to change Viewer requests and responses:
+		+ Viewer Request: after CloudFront receives a request from a viewer
+		+ Viewer response: before CloudFront forwards the response to the viewer
+	+ Native feature of CloudFront (manage code entirely within CloudFront

@@ -1,0 +1,45 @@
+EC2: EBS, ELB, ASG
+
+EC2 sizing & configuration options:
+	+ OS, CPU, RAM, EBS & EFS & EC2 Instance Store, Network card (speed, public IP => VNI), Security Groups,
+		Bootstrap script => EC2 User Data
+	+ EC2 User Data: run with root user privilage
+	+ EC2 instance types: t2.micro,t2.xlarge, c5d.4xlarge, r5.16xlarge, m5.8xlarge
+
+EC2 Instance Types: general purpose, storage optimized, compute optimized, memory optimized
+
+Security groups: only allow (no deny), it is stateful. have inbound and outbound rules
+ssh to ec2 and timeout : missing security group tcp 22
+
+EC2 Spot Instance Requests:
+	- Define max spot price. get instance while current spot price < max
+	- 2 min grace period
+
+Reserved instances: long-term 12 to 36 months. payment for upfrfont or partial upfront
+AWS Saving plans: dedicated $/hour for 1 or 3 year term
+capicity reservations: reserve ec2 for amount of time
+dedicated host vs dedicated instances: 
+	Dedicated instance: your instance use its own CPU, memory, network, not sharing those resourse with any other
+	instance. Just like you're hiring a small laptop. But if you stop/restart that laptop, next time, 
+	you're hiring another laptop.
+
+	Dedicated hosts: Similar to dedicated instance, but guess what, that laptop is yours, forever, 
+	as long as you pay the bill. You stop/restart that laptop, next time you still boot on the same laptop. 
+	But usually this laptop is huge, and the price is a lot more expensive
+
+
+an account has maximum 5 elastic IP.
+you can attach how many elastic IP to an instances as you like
+an instance can has only 1 public IP
+private ip will go according to eni assigned to ec2
+
+EC2 placement groups: cluster (all in same AZ in same rack - fast 10Gbps bandwidth between instances), 
+		      spread  (span all ec2 evenly into all AZ - 7 instances per placement group max),
+		      partition (7 partition per AZ max - max 100 ec2 instances )
+
+ENI: one private IP, one or more secondary private IP
+	one elastic IP per private IP
+	one public IP
+	one or more security groups
+	one mac address
+	bound to specific AZ

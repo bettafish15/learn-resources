@@ -1,0 +1,14 @@
+- buying service => SNS topic => Email notification, fraud service, shipping service v.v....
+=> Pub/Sub pattern of Amazon SNS
+
+- Up to 12,500,000 subscriptions per topic - not on exam
+- 100,000 topics limit - not on exam
+
+- two ways topic publish , direct publish
+
+- SNS FIFO
+	+ ordering
+	+ de-duplication - id-based or content-based
+
+
+- message filtering: JSON policy used to filter messages to SNS topic's subscriptions

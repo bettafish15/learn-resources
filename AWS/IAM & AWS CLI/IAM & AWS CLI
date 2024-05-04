@@ -1,0 +1,48 @@
+- Users, Groups, Policies:
+	+ Group only contain users, not other groups
+	+ Users don't have to belong to any groups, and user can belong to multiple groups
+	+ IAM Permissions: JSON Documents called policies. Statement array with objects (Object will include attribute: Affect: Allow/Deny, Action, Resource)
+	+ least privilege principle: don't give more permissions than a user needs
+
+- IAM Policies:
+	+ Version, Id, Statement array with objects (Object will include attribute: Affect: Allow/Deny, Action, Resource, Sid, Principle), Condition: optional
+	+ example: {
+			Version: "2012-10-17",
+			Id: "S3-Account-Permissions",
+			Statement: [
+				{
+					Sid: 1,
+					Effect: Allow,
+					Principle: {
+						AWS: ['arn:aws:iam:1234456569...:root']
+					},
+					Action: ["s3:GetObject"]
+					Resource: ['arn:aws:s3::mybuc....']
+				}			
+			]
+		}
+
+- IAM MFA:
+	+ Password policy: 
+		. minimum password length
+		. require additional character: uppercase, numbers, non-alpha, v.v...
+		. Allow all IAM users to change password
+		. password expiration: require to change password after date
+		. prevent password re-use
+	
+	+ MFA
+
+- AWS Access Keys, CLI, SDK:
+	+ AWS Access Keys: accessKeyId, secretAccessKey => AWS CLI and SDK
+	+ AWS Management Console
+
+- IAM Roles:
+	+ assign permissions to AWS services with IAM Roles
+	+ cross-account access: AWS account can assume role to access resources to another AWS account
+
+identity-based policies: attach to an IAM user, group, or role.  
+These policies let you specify what that identity can do (its permissions).
+
+resource-based policies: attach to a resource. For example, you can attach resource-based policies 
+to Amazon S3 buckets, Amazon SQS queues, VPC endpoints, and AWS Key Management Service encryption keys
+

@@ -1,0 +1,46 @@
+S3 Buckets:
+	+ buckets must have a globally unique name (across all regions all accounts)
+	+ buckets are defined at the region level
+	+ naming convention: no uppercase, no underscore, 3-63 char long, not an ip, must start with
+		lowercase or number, must not start with prefix xn--, not end with -s3alias
+
+S3 Objects:
+	+ objects (files) have a Key
+	+ key is the FULL path: s3://my-bucket/my_file.txt => my_file.txt is the key
+				s3://my-bucket/my_folder/my_file.txt => my_folder/my_file.txt is the key
+	+ key is composed of prefix + object name
+	+ there's no concept of directories within buckets (although UI will trick you to think otherwise)
+	+ Object values are the content of the body:
+		- max object size is 5TB
+		- if uploading more than 5GB, must use multi-part upload
+		- metadata (list of text key / value pairs - system or user metadata)
+		- tags (unicode key / value pair - up to 10) - for security / lifecycle
+		- version ID (if versioning is enabled)
+
+S3 Security:
+	+ User-based:
+		- IAM Policies - which API calls should be allowed for a specific user from IAM
+	+ Resource-based:
+		- bucket policies: bucket wide rules from the S3 console - allows cross account
+		- object access control list ACL - finer grain (can be disabled)
+		- bucket access control list ACL - less common (can be disabled)
+	+ IAM principal can access an S3 if:
+		- the user IAM permissions ALLOW it OR the resource policy ALLOWS it
+		- AND there is no explicit DENY
+	+ Encryption: encrypt objects in S3 using encryption key
+
+S3 Bucket Policies:
+{
+	Version: 2012-10-17,
+	Statement: [
+	{
+		Sid: PublicRead,
+		Effect: Allow,
+		Principal: *,
+		Action: [s3:GetObject],
+		Resource: ['arn:aws:s3::example/*']
+	}
+	]
+}
+
+Block Public Access: created by AWS to prevent data leaks. it will override every other settings

@@ -1,0 +1,32 @@
+ElasticCache:
+	- Managed Redis/Memcached
+	- AWS takes care of OS maintenance/patching, optimizations, setup, config, monitor, failure recovery/backups
+	- need to change app code
+
+ElasticCache - Redis vs Memcached
+	- Redis:
+		+ Multi AZ with auto-failover
+		+ Read Replicas to scale reads => high avail
+		+ data durability using AOF (Append Only File) persistence
+		+ backup/restore features
+		+ supports sets/sorted sets (feature of Redis)
+
+	- Memcache:
+		+ multi-node for partition of data (sharding)
+		+ no high avail (replication)
+		+ non persistent
+		+ no backup and restore
+		+ multi-threaded arch
+
+
+
+RDB (Redis Database): RDB persistence performs point-in-time snapshots of your dataset at specified intervals.
+vs
+AOF (Append Only File): AOF persistence logs every write operation received by the server. 
+These operations can then be replayed again at server startup, reconstructing the original dataset. 
+Commands are logged using the same format as the Redis protocol itself.
+
+https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/
+
+A Redis sorted set is a collection of unique strings (members) ordered by an associated score
+A Redis set is an unordered collection of unique strings (members)

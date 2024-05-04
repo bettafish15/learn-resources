@@ -1,0 +1,5 @@
+- S3 can host static websites and have them accessible on Internet
+- http://bucket-name.s3-website-aws-region.amazonaws.com OR
+- http://bucket-name.s3-website.aws-region.amazonaws.com
+
+- 403 Forbidden error => check bucket policy allows public reads

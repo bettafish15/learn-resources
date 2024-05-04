@@ -1,0 +1,5 @@
+Retrieve less data using SQL by performing server-side filtering
+can filter by rows & columns (simple SQL statements)
+less network transfer, less CPU cost client-side
+
+up to 400% faster and 80% cheaper

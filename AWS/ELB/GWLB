@@ -1,0 +1,10 @@
+Gateway Load Balancer:
+	- Deploy scale manage a fleet of 3rd party network virtual app AWS (Firewalls, Intrusion and Prevention Sys, Deep Packet Inspect v.v...)
+	- Layer 3 (Network Layer)
+	- GENEVE protocol - port 6081
+	- transparent network gateway - single entry/exit for all traffic
+	- Load Balancer - distributes traffic to your virtual appliances
+
+Target Groups:
+	- EC2 Instances
+	- IP Addresses

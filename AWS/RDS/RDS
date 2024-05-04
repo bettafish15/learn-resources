@@ -1,0 +1,21 @@
+RDS: Postgres, MySQL, MariaDB, Oracle, SQL Server, IBM DB2, Aurora
+
+- automated provisioning, OS patching
+- continuous backups and restore to specific timestamp (Point In Time Restore)
+- monitoring dashboards
+- read replicas
+- multi AZ for Disaster Recovery
+- maintainance windows for upgrades
+- scaling capability (vertical and horizontal)
+- storage by EBS (gp2 or io1)
+- can't SSH into instances
+
+RDS - Storage Auto Scaling:
+	+ automatically detects when it's running out free database storage => scales
+	+ avoid manually scaling
+	+ Maximum Storage Threshold: maximum limit for DB storage
+	+ automatically modify storage if:
+			- free storage < 10% of allocated storage
+			- low-storage lasts at least 5 min
+			- 6 hours have passed since last modification
+	+ supports all RDS database engines

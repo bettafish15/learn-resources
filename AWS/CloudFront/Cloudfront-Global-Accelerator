@@ -1,0 +1,17 @@
+Leverage AWS internal network to route to your app (route through edge locations)
+
+Works with Elastic IP, EC2 instances, ALB, NLB, public or private
+
+Consistent Perf:
+	- Intelligent routing to lowest latency and fast regional failover
+	- No issue with client cache (IP doesn't change (Anycast IP))
+	- Internal AWS network
+
+Health Checks:
+	- Global Acce perfs a health check of your app
+	- helps make app global (failover < 1 min for unhealthy)
+	- great for DR (Disaster Recovery)
+
+Security:
+	- only 2 external IP need to be whitelisted
+	- DDoS protection thanks to AWS Shield

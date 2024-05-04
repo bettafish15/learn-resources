@@ -1,0 +1,4 @@
+-Perform bulk operations on existing S3 Objects with a single request.
+-A job consists of a list of objects, action to perform, and optional params
+-will manage retries, tracks progress, sends completion noti, gen reports, v.v....
+-can use S3 Inventory to get object list and use S3 Select to filter

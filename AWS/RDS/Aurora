@@ -1,0 +1,46 @@
+Aurora: not open-source
+	supports MySQL and Postgres drivers. 
+	claimed to be 3x perf over postgres and 5x perf over MySQL
+	able to restore to any point of time without using backups
+
+	+ automatically grow storage in increments of 10GB, up to 128 TB
+	+ up to 15 replicas, replication is sub 10 ms replica lag
+	+ failover in Aurora is instantaneous (High Availability native)
+	+ 20% more cost than RDS
+
+High Avail and Read Scaling:
+	+ 6 copies of data across 3 AZ:
+		+ 4 copies out of 6 needed for writes
+		+ 3 copies out of 6 need for reads
+		+ self healing with peer-to-peer replication
+		+ storage is spread across 100s of volumes
+	
+	+ one aurora instance instance takes writes (master)
+	+ automated failover for master in less than 30 secs
+	+ master + up to 15 replicas read
+	+ support for cross region replication
+
+Aurora DB Cluster:
+	+ One DNS name of master
+	+ One DNS name of read replicas (load balance to all read replicas)
+	+ Can define an custom endpoint that point into read replicas
+
+Aurora Serverless: automated database instantiation and auto-scaling based on actual usage
+			good for infrequent unpredicable workload
+			no capacity planning needed
+			pay per second
+
+Global Aurora:
+		+ Aurora Cross Region Read Replicas: like above mentioned
+		+ Aurora Global Database: 
+			- 1 primary region (read/write)
+			- Up to 5 secondary (read-only) regions, replication lag < 1sec
+			- Up to 16 Read Replicas per secondary regions
+			- Promoting another region (for DR- Disaster Recovery) has an RTO (Recover Time Obj) < 1 min
+
+Aurora Machine Learning:
+	+ Enable add ML-based predictions to your app via SQL
+	+ Simple, optimized secure integration between Aurora and AWS ML services
+	+ supported services:
+		- Amazon SageMaker
+		- Amazon Comprehend

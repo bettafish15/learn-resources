@@ -1,0 +1,25 @@
+READ REPLICA:
+	+ ASYNC replication
+	+ Up to 15 Read Replicas
+	+ Within AZ, Cross AZ or Cross Region
+	+ eventually consistent
+	+ replicas can be promoted to their own DB
+	+ need to update connection string to connect to read replica
+	+ cannot execute INSERT,DELETE,v.v...
+
+	+ Network Cost when replication to read replica:
+		+ NO network cost when data goes from one AZ to another
+		+ for RDS Read Replicas within same region => no fee
+
+	+ can be setup as multi AZ for Disaster Recovery
+
+
+RDS MULTI AZ:
+	+ SYNC replication
+	+ One DNS name - automatic app failover to standby. 
+		(failover scenario: loss of AZ, loss of network, instance or storage failure)
+	+ no manual intervention in apps
+	+ cannot be read, write into
+
+RDS - From Single-AZ to Multi AZ:
+	+ no downtime (snapshot will be taken and be restore to a new database)

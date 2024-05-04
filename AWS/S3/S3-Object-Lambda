@@ -1,0 +1,4 @@
+S3 Object Lambda
+	+ Use AWS Lambda Func to change the obj before it is retrieved by the caller app
+	+ only one s3 bucket is needed, on top of which we create s3 access point and s3 object lambda access points
+	+ 

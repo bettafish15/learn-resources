@@ -1,0 +1,7 @@
+You can restrict who can access your distribution
+	+ Allow list: allow your users to access your content only if they're in one of the countries on a list
+		of approved countries
+	+ Block list: prevent your users from accessing your content if they're in one of the countries on a list
+		of banned countries
+
+The country is determined using a 3rd party Geo-IP database

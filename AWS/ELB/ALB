@@ -1,0 +1,26 @@
+App load balancer:
+	- latency ~ 400 ms
+	- layer 7 (http)
+	- load balance to multiple HTTP apps across machines (target groups)
+	- load balance to multiple apps on the same machine (containers)
+	- supports http/2 and websocket
+	- supports redirects (from http to https for ex)
+
+	- routing tables to different target groups:
+		- routing based on path URL
+		- routing based on hostname (one.example.com & other.example.com)
+		- routing based on query string, headers
+
+	- ALB are great fit for micro-services & container-based app (docker & amazon ECS)
+	- port mapping feature to redirect to a dynamic port
+	- can route to multiple target groups
+	- health checks are at the target group level
+	- fixed hostname (XXX.region.elb.amazonaws.com)
+	- application see IP through header X-Forwarded-For
+	- X-Forwarded-Port, X-Forwarded-Proto
+
+Target groups:
+	_ EC2 instances (can be managed by auto scaling group) - http
+	- ECS Tasks (managed by ECS) - HTTP
+	- Lambda functions
+	- IP Addresses - must be private IPs

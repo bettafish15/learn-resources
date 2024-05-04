@@ -1,0 +1,23 @@
+ECS Service Auto Scaling:
+	+ Automatically ins/decr the desired num of ECS tasks
+	+ uses AWS App Auto Scaling
+		- ECS Service Average CPU Utilization
+		- ECS Service Average Memory Utilization - Scale on RAM
+		- ALB Request Count Per Target - metric coming from the ALB
+
+	+ Target Tracking - scale based on target value for a specific CloudWatch metrics
+	+ Step Scaling - scale based on a specified CloudWatch Alarm
+	+ Scheduled Scaling - scale based on a specified date/time (prefictable changes)
+	
+	+ ECS Service Auto Scaling IS NOT EC2 Auto Scaling
+	+ Fargate Auto Scaling is much easier to setup
+
+Auto Scaling EC2 Instances:
+	+ Auto Scaling Group Scaling
+		- Scale your ASG based on CPU Utilization
+		- Add EC2 instances over time
+
+	+ ECS Cluster Capacity Provider:
+		- Used to automatically provision and scale the infra for your ECS Tasks
+		- Capacity Provider paired with an Auto Scaling Group
+		- Add EC2 Intances when you're missing capacity (CPU, RAM. v.v...)

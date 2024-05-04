@@ -1,0 +1,25 @@
+Amazon Cognito
+	+ Give users an identity to interact with our web or mobile app
+	+ Cognito User Pools:
+		- Sign in func for app users
+		- Integrate with API Gateway & ALB
+	+ Cognito Identity Pools (Federated Identity):
+		- Provide AWS creds to users so they can access AWS resources directly
+		- Integrate with Cognito User Pools as an identity provider
+
+Cognito User Pools (CUP) - User Features:
+	+ Create a serverless database of user for your web & mobile apps
+	+ Simple login: Username (or email) / password combination
+	+ Password reset
+	+ Email & Phone Number Verification
+	+ Multi-factor auth
+	+ Federated Identities: users from Fb, Gg, SAML....
+
+Cognito Identity Pools (Federated Identities)
+	+ Get identities for "users" so they obtain temporary AWS creds
+	+ users source can be cognito user pools, 3rd party logins, etc...
+	+ users can then access AWS services directly or through API Gateway
+	+ IAM policies applied to the creds are defined in cognito
+	+ they can be customized based on user_id for fine grained control
+	+ default IAM roles for auth and guest users
+

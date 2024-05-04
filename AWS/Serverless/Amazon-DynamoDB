@@ -1,0 +1,89 @@
+Amazon DynamoDB:
+	+ Fully managed, highly avail with replication across multiple AZs
+	+ NoSQL with transaction support
+	+ distributed db => scales to massive workloads
+	+ millions of req/sec, trillions of rows, 100s of TB storage
+	+ fast and consistent in perf (single-digit millisec)
+	+ integrated with IAM for secur, author and admins
+	+ low cost and auto-scaling capa
+	+ no maintain or patching, always avail
+	+ standard & infrequent access (IA) Table Class
+
+Basics:
+	+ made of tables
+	+ each tbl has a primary key (must be decided at creation time)
+	+ each table can have an infinite number of items (= rows)
+	+ each item has attr (can be added over time - can be null)
+	+ maximum size of an item is 400KB
+	+ data types:
+		- scalar types: string, number, binary, boolean, null
+		- document types: list, map
+		- set types: string set, number set, binary set
+
+	+ rapidly evolve schemas
+
+Read/Write Capacity Modes:
+	+ Provision mode
+		- specify the number of reads/writes per sec
+		- plan capacity beforehand
+		- pay for provisioned read capacity units (rcu) & write capacity units (wcu)
+		- possibility to add auto-scaling mode for RCU & WCU
+	+ On-Demand Mode:
+		- read/writes automatically scale up/down with your workloads
+		- no capacity planning needed
+		- pay for what you use, more expensive
+		- greate for unpredictable workloads, steep sudden spikes
+
+DynamoDB Accelerator (DAX):
+	+ Fully managed, highly avail, seemless in-memory cache for DynamoDB
+	+ solve read congestion by caching
+	+ microsecs latency for cached data
+	+ not require changing app logic modification
+
+DynamoDB - Stream processing:
+	+ ordered stream of item-level modifications (create/update/delete) in a table
+	+ 2 ways:
+		- DynamoDB streams:
+			. 24h retention
+			. limited # of consumers
+			. process using AWS Lambda Triggers, or DynomaDB Stream Kinesis adapter
+		- Kinesis data streams:
+			. 1 year retention
+			. high # of consumers
+			. process using AWS Lambda, Kinesis Data Analytics, Kinesis Data Firehose, AWS Glue Streaming ETL...
+
+DynamoDB Global Tables:
+	+ make table accessible with low latency in multiple-regions
+	+ active-active replication => can READ and WRITE to the table in any region and it will replicate to others
+	=> 2 way replication
+	+ must enable dynamo stream to use
+
+DynamoDB - Time To Live (TTL)
+	+ automatically delete items after an expiry timestamp
+
+Backups for DR (Disaster Recovery)
+	+ Continous backups using PIT (Point In Time) recovery
+		. optionally enabled for the last 35 days
+		. point in time recovery to any time within backup window
+		. recovery process creates a new table
+
+	+ On-demand backups:
+		. full backups for long-term retention, until explicitely deleted
+		. doesn't affect perf or latency
+		. can be config and manage in AWS Backup (enable cross-region copy)
+		. recovery process creates a new table
+
+Integration with S3:
+	+ Export to S3 (must enable PITR)
+		. works for any point of time in the last 35 days
+		. does not affect read capacity of tbl
+		
+		=> . perf data analysis on top of DynamoDB
+		   . retain snapshots for auditing
+		   . ETL on top of S3 data before importing back into DynamoDB
+		   . export in DynamoDB JSON or ION format
+	+ import from s3
+		. import csv, dynamodb json or ION format
+		. does not consume any WCU
+		. creates new table
+		. import errors are logged in cloudwatch logs

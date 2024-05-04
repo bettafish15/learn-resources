@@ -1,0 +1,33 @@
+RDS Backups:
+	+ automated backups:
+		- daily full backup of the database (during backup window)
+		- transaction logs backed-up by RDS every 5 mins => restore to any point in time (from oldest backup
+			to 5 mins ago)
+		- retention 1 to 35 days, set 0 to disable automated backups
+		
+	+ manual db snapshots:
+		- manual db snapshots
+		- retention of backup for as long as you want
+
+	*** a stopped RDS still pay for storage => snapshot database. when need to use then restore it.
+
+Aurora Backups:
+	+ automated backups:
+		- 1 to 35 days (cannot be disabled)
+		- point-in-time recovery in that timeframe
+
+	+ manual db snapshots:
+		- manual db snapshots
+		- retention of backup for as long as you want
+
+RDS & Aurora restore options:
+	+ restoring creates a new database
+	+ restore MySQL RDS databse from S3
+	+ restore MySQL Aurora cluster from S3:
+		- create a backup using Percona XtraBackup
+
+Aurora Database Cloning:
+	+ Create a new Aurora DB Cluster from an existing one
+	+ Faster than snapshot & restore
+	+ uses copy-on-write protocol. (pointer to old storage, only copy to new storage when update/create/delete)
+	+ primarily used for create staging database from production database

@@ -1,0 +1,28 @@
+Auto-scaling:
+	+ scale out (add ec2 instances) to match an increased load
+	+ scale in (remove EC2 instances) to match an decreased load
+	+ ensure a minimum and maximum number of ec2 running
+	+ automatically register ec2 instances to load balancer
+	+ recreate an ec2 instance in case a previous one is terminated (ex: if unhealthy)
+	+ free (only pay for underlying ec2 instances)
+
+- auto scaling group attributes:
+	+ a launch template:
+		- AMI + InstanceType
+		- EC2 User Data
+		- EBS Volumes
+		- Security Groups
+		- SSH Key Pair
+		- IAM Roles for EC2
+		- Network + Subnets Information
+		- Load Balancer Info
+	+ min size/max size/ initial capacity
+	+ scaling policies
+
+Scaling policies:
+	- Dynamic scaling:
+		+ target tracking: I want average ASG CPU to stay at around 40%
+		+ simple/step scaling: when a cloudwatch alarm is triggered (CPU > 70%) add 2 units
+		+ scheduled scaling: increase the min capacity to 10 at 5pm on Fridays
+	- Predictive scaling:
+		+ AI

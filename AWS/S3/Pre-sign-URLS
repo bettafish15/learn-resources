@@ -1,0 +1,6 @@
+Pre-Signed URLs
+	+ Generate pre-signed URLs using the S3 Console, AWS CLI or SDK
+	+ URL Expiration
+		- S3 Console - 1 min up to 720 mins (12 hours)
+		- AWS CLI - configure exp with --expires-in param in secs (default 3600 sec, max 604800 secs ~ 168h)
+	+ users given a pre-signed URL inherit the permissions of the user that generated the URL for GET/PUT

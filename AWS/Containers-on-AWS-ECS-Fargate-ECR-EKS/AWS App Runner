@@ -1,0 +1,8 @@
+App Runner:
+	+ Fully managed service that makes it easy to deploy web apps and APIs at scale
+	+ No infra experience required
+	+ Start with your source code or container image
+	+ automatically builds and deploy the web app
+	+ Automatic scaling, highly avail, load balancer, encryption
+	+ VPC access support
+	+ Connect to database, cache, message queue

@@ -1,0 +1,5 @@
+ECS Launch Type:
+	+ EC2 Launch Type: you must provision & maintain the infra (EC2 Instances)
+	+ Fargate Launch Type: all serverless!
+
+Amazon S3 can't be mounted as a filesystem on EC2 Tasks

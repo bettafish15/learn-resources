@@ -1,0 +1,7 @@
+- SSL - Server Name Indication (SNI)
+	+ SNI solves the problem of loading multiple certs onto one web server (to serve multi website)
+	+ It's a "newer" protocol, requires client to indicate the hostname of the target server in the initial 
+		handshake
+	+ the server will then find the correct cert, or return the default one
+
+	*** only works for ALB & NLB (new gen ALB), CloudFront

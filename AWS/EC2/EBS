@@ -1,0 +1,43 @@
+EBS: Elastic Block Store, network drive, bound to specific AZ, mount to one instance at a time 
+									(except use EBS multi-attach)
+
+default root EBS is deleted attribute enabled
+default others EBS is deleted attribute disabled
+
+EBS snapshot can be copy to another region and AZ
+EBS Snapshot Archive: move snapshot to an archive tier that is 75% cheaper. takes within 24 to 72 hours for restoring
+EBS Snapshot Recycle Bin: Setup rules to retain deleted snapshots. retention 1 day to 1 year you choose
+Fast Snapshot Restore (FSR): a lot of money
+
+Restore EBS snapshot can be restored to another AZ
+
+AMI are built for a specific region (and can be copied across regions)
+build AMI create EBS snapshots behind the scene
+
+EC2 Instance Store: high-performance hardware disk (ephemeral storage)
+
+EBS Volume Types (only gp2/gp3 io1/io2 be used as root/boot volume): 
+	gp2/gp3 (SSD): General purpose - cost effective storage latency
+	io1/io2 Block Express (SSD): Highest-performance
+	st1 (HDD): Low cost HDD designed for frequently accessed, throughput-intensive
+	sc1 (HDD): Lowest cost HDD volume designed for less frequently accessed workloads
+
+- gp3 & io1 can independently set IOPS throughput
+- gp2: IO increase if disk size increase
+- high throughput with lowest cost => st1 sc1
+- databases workloads => io1/io2
+- more than 32,000 IOPS, use EC2 Nitro with io1/io2
+
+EBS - Size | Throughput | IOPS (I/O Ops Per Sec)
+
+EBS Multi-Attach: 
+	- attach the same EBS volume to multiple EC2 instances IN THE SAME AZ (only io1/io2 famlily)
+	- each EC2 instances that connects to the EBS will have full read&write permissions
+	- UP TO 16 EC2 INSTANCES ONLY
+	- Must use a file system that is cluster aware (not XFS, EXT4, etc...)
+
+- 256,000 is the maximum IOPS you can achieve when you're using the EBS io2 Block Express volume type.
+- 64,000 is the maximum IOPS you can achieve when you're using EBS io1 or io2 volume types.
+- 16,000 is the maximum IOPS you can achieve when you're using the EBS gp2 volume type.
+
+

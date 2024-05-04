@@ -1,0 +1,12 @@
+Network Load Balancer:
+	- Layer 4: TCP & UDP
+	- millions of request per sec
+	- latency ~ 100 ms
+	- NLB has one static IP per AZ! supports assigning Elastic IP
+
+Target Groups:
+	- EC2 instances
+	- IP Addresses - must be private
+	- App Load Balancer
+
+Health-check: TCP,HTTP, HTTPS

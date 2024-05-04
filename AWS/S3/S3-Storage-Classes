@@ -1,0 +1,63 @@
+S3 Standard - General Purpose:
+	+ 99.99% Avail
+	+ sustain 2 concurrent facility failures
+	+ low latency, high throughput
+S3 Standard-Infrequent Access (IA):
+	+ lower cost than s3 standard
+	+ for data is less frequently accessed, but requires rapid access when needed => incur a cost when retrieve
+	+ 99.9% avail
+S3 One Zone-Infrequent Access
+	+ lower cost than s3 standard
+	+ for data is less frequently accessed, but requires rapid access when needed => incur a cost when retrieve
+	+ durability: 99.999999999% in a single AZ; data lost when AZ is destroyed
+	+ 99.5% avail
+S3 Glacier Instant Retrieval:
+	+ low-cost object storage meant for archiving / backup
+	+ pricing: storage + object retreval cost\
+	+ millisecond retreval
+	+ minimum storage duration of 90 days (see *)
+S3 Glacier Flexible Retrieval:
+	+ low-cost object storage meant for archiving / backup
+	+ pricing: storage + object retreval cost
+	+ three flexibility retrieval time: expedited (1 to 5 mins), Standard (3 to 5 hours), 
+		Bulk (5 to 12 hours) - free
+S3 Glacier Deep Archive:
+	+ low-cost object storage meant for archiving / backup
+	+ pricing: storage + object retreval cost
+	+ retrieval time: Standard (12 hours), Bulk (48 hours)
+	+ Minimum storage duration of 180 days
+S3 Intelligent Tiering:
+	+ Small monthly monitoring and auto-tiering fee
+	+ moves objects automatically between access Tiers based on usage
+	+ there are no retreval charges in S3 Intelligent-Tiering
+		- Frequent Access Tier (automatic): default tier
+		- Infrequent Access Tier (automatic): objects not access for 30 days
+		- Archive Instant Access Tier (automatic): objects not access for 90 days
+		- Archive Access Tier (optional): configurable from 90-700+ days
+		- Deep Archive Access Tier (optional): configurable from 180-700+ days
+
+- can move between classes manually or using S3 lifecycle config
+
+S3 Durability and Avail:
+	+ Durability: 
+		- High durability (99,999999999%, 11 9's) of objects across multiple AZ
+			=> 10,000,000 objects with S3, average expect to incur a loss of a single object once
+			every 10.000 years
+		- same for all storage classes
+
+	+ Avail:
+		- measures how readily avail a service is
+		- Standard has 99.99% avail = not avail 53 mins a year
+
+
+
+
+
+*************************
+* S3 Intelligent-Tiering, S3 Standard-IA, and S3 One Zone-IA storage are charged for a minimum storage duration of 
+30 days, and objects deleted before 30 days incur a pro-rated charge equal to the storage charge for the remaining 
+days. Objects that are deleted, overwritten, or transitioned to a different storage class before 30 days will incur
+the normal storage usage charge plus a pro-rated request charge for the remainder of the 30-day minimum. 
+This includes objects that are deleted as a result of file operations performed by File Gateway. 
+Objects stored for 30 days or longer will not incur a 30-day minimum request charge.
+

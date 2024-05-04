@@ -1,0 +1,11 @@
+Metric is a variable to monitor (CPUUtilization, Networkln....)
+
+Metrics belong to namespaces
+Dimension is an attribute of a metric (instance id, env, etc...)
+Up to 30 dimensions per metric
+Metrics have timestamps
+Can create CloudWatch dashboards of metrics
+can create CloudWatch Custom Metrics - RAM usage of EC2
+
+
+stream to Kinesis Data Firehose => everywhere

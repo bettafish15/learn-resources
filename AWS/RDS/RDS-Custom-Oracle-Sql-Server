@@ -1,0 +1,6 @@
+RDS Custom:
+	+ Managed Oracle and SQL Server with OS and database customization
+	+ automates setup, operation, scaling
+	+ access to underlying database and OS: configure setting, install patches, enable native features, can be ssh
+		or ssm session manager
+	+ de-activate automation mode to perform customization (should take DB snapshot before proceed)

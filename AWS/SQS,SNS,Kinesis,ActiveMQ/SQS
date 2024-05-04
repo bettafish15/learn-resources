@@ -1,0 +1,33 @@
+-retention of message: 4 days, maximum 14 days
+-low latency (<10ms on publish and receive)
+-limitation of 256kb per message sent
+-at least once delivery
+-can have out of order (best effort delivering)
+-can poll SQS for messages (receive up to 10 messages at a time)
+
+2 type of encryption - SSE-SQS , SSE-KMS
+
+standard queue - FIFO queue - Dead-letter queue
+
+
+
+- After a message is polled by a consumer, it becomes invisible to other consumers
+- By default, the message visibility timeout is 30 sec => after 30 sec, it will be visible to other consumer
+- ChangeMessageVisibility API to get more time
+
+
+- delivery delay: time delay from when message first go in to the queue to the time it can be processed by consumer ?
+
+
+- long polling: when a consumer requests messages from the queue, it can optionally 'wait' for messages to arrive
+if there are none in the queue
+	+ long polling decreases the number of API calls, increasing the efficiency and latency
+	+ wait time can be between 1 sec to 20 sec
+	+ long polling is preferable to short polling
+	+ long polling can be enabled at the queue level or at the api level using WaitTimeSeconds
+
+
+- FIFO queue: 
+	+ limited through-put: 300msg/sec without batching, 3000ms/sec with
+	+ exactly-once send capability (by removing duplicates)
+	+ messages are processed in order by the consumer

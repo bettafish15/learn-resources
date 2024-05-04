@@ -1,0 +1,27 @@
+EKS:
+	+ EKS = Elastic Kubernetes Service , launch managed Kubernetes clusters on AWS
+	+ EKS supports EC2 if you want to deploy worker node or Fargate to deploy serverless containers
+
+EKS - Node Types:
+	+ Managed Node Groups:
+		- Creates and manaages Nodes (EC2 instances) for you
+		- Nodes are part of an ASG managed by EKS
+		- Supports On-Demand or Spot Instances
+
+	+ Self-Managed Nodes
+		- Nodes created by you and registered to the EKS cluster and managed by an ASG
+		- you can use prebuilt AMI - Amazon EKS Optimized AMI
+		- Supports On-Demand or Spot Instances
+
+	+ AWS Fargate
+		- No maintainance required; no nodes managed
+
+EKS - Data Volumes:
+	+ Need to specify StorageClass manifest on your EKS cluster
+	+ Leverages a Container Storage Interface (CSI) compliant driver
+	
+	+ Support for ...
+		- Amazon EBS
+		- Amazon EFS (works with Fargate)
+		- Amazon FSx for Lustre
+		- Amazon FSx for NetApp ONTAP

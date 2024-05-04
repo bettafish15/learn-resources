@@ -1,0 +1,16 @@
+Lambda by default:
+	+ By default, Lambda function is launched outside of VPC
+	=> cannot access resources in VPC (RDS, ElasticCache, internal ELB...)
+
+Lambda in VPC:
+	+ must define VPC ID, subnets and security groups
+	=> lambda will create an ENI in your subnet
+
+Lambda with RDS Proxy:
+	+ If lambda func directly access database => open too many connections under high load
+	+ RDS Proxy:
+		- improve scalability by pooling and sharing DB connections
+		- improve avail by reducing 66% the failover time and preserving conn
+		- improve secur by enforcing IAM authen and storing creds in secrets manager
+
+	*** Lambda func must in VPC, RDS Proxy NEVER PUBLICLY ACCESSIBLE

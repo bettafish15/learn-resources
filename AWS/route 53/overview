@@ -1,0 +1,104 @@
+amazon route 53 (53 is reference to the traditional DNS port):
+	+ highly avail scalable fully managed and authoritative DNS (authoritative = you can update DNS records)
+	+ route 53 is also a domain registrar
+	+ ability to check the health of resources
+	+ only AWS service which provides 100% avail SLA (Service Level Agreement)
+
+Route 53 - Records:
+	+ how do you want to route traffic for a domain
+	+ each record contains:
+		- domain/subdomain name - eg: example.com
+		- recordType - eg: A, AAAA, v.v...
+		- value
+		- routing policy - how route 53 responds to queries
+		- ttl
+	+ supports A / AAAA / CNAME / NS / TXT / v.v....
+
+Route 53 - Record Types:
+	+ A - maps a hostname to IPv4
+	+ AAAA - maps a hostname to IPv6
+	+ CNAME - maps a hostname to another hostname
+		. the target is a domain name which must have an A or AAAA record
+		. can't create a CNAME record which is not a sub-domain (for example: example.com is invalid)
+	+ NS - Name Servers for the Hosted Zone
+
+Route 53 - Hosted Zones:
+	+ A container for records that define how to route traffic a domain or its sub-domain
+	+ Public Hosted Zones - contains records that specify how to route traffic on the Internet 
+		(public domain names)
+	+ Private Hosted Zones - contain records that specify how to route traffic within one or more VPCs
+		(private domain names - application1.company.internal)
+	+ 0.50$ per month per hosted zone
+
+Route 53 - TTL
+	+ high TTL - eg: 24 hour: less traffic on route 53 but possibly outdated records
+	+ low TTL - eg: 60sec: more traffic on route 53 => more $$, but less outdated records
+	+ except for alias, ttl is mandatory for each dns record
+
+Route 53 - Alias
+	+ AWS Resources (Load Balancer, CloudFront...) expose an AWS hostname
+	=> Alias: points a hostname to an AWS Resource, free of charge, native health-check
+
+Route 53 - Alias Records Targets
+	+ ELB, Cloudfront Distributions, API Gateway, EB env, S3 Websites, VPC Interface Endpoints,
+		Global Accelerator accelerator, route 53 record in the same hosted zone
+	+ cannot set alias record for an EC2 DNS name
+
+Route 53 - Healcheck:
+	+ only for public resources
+	+ automated DNS failover:
+		- health check monitor endpoint
+			. about 15 global health checkers will check the endpoint
+			. healthy/unhealthy threshold - 3 (default)
+			. interval - 30 sec (can set to 10 sec -> higher cost)
+			. supported proc : http, https, tcp
+			. > 18% health checks report => result
+			. ability to choose which locations you want route 53 to use
+			. health check pass only when the endpoint responds with 2xx, 3xx status codes
+			. health checks can be setup to pass/failed based on the text in the first 5120 bytes of
+				response
+			. configure router/firewall to allow incoming requests from route 53 health checks
+		- health check monitor other healthcheck (calculated health checks)
+			. combine results of multiple health check into one
+			. can use OR, AND, or NOT
+			. monitor up to 256 child health checks
+			. specify how many of the health checks need to pass to make parent pass
+			. perform maintainance to website without causing health check to fail => use calcualated
+				healthcheck
+		- health checks that monitor cloudwatch alarms
+			. used to monitor private hosted zones
+			. create cloudwatch metric and associate a cloudwatch alarm, then create healthcheck
+				to check the alarm itself
+
+Route 53 - Routing Policies:
+	+ Simple: 
+		. route traffic to a single resource
+		. can have multiple values for a single record
+		. if multiple value are returned, random one is chosen BY THE CLIENT
+	+ Weighted:
+		. control % of the requests that go to each specific resource
+		. assign each record a relative weight
+		. weights don't need to sum up to 100
+		. DNS records must have the same name and type for it to be a part of weighted routing policies
+		. can be associated with health checks
+		. assign a weight of 0 to a record to stop sending traffic to a resource
+		. if all records have 0 weight => all records will be returned equally
+	+ Failover:
+		. failover to another if health check fail
+	+ Latency based:
+		. redirect to the resource that has the least latency close to us
+		. latency is based on traffic between users and AWS Regions
+		. can be associateed with health checks
+	+ Geolocation:
+		. routing based on user location
+		. should create Default record if there's no match on locatoin
+		. can be associated with health check
+	+ Multi-Value Answer:
+		. like simple routing but have health check (simple routing does not have health check)
+	+ IP Based:
+		. routing based on client's ip address
+		. provide a list of CIDRs for your clients and corresponding endpoints/locations
+		. 
+	+ Geoproximity (using Route 53 Traffic Flow feature):
+		. route traffic to your resources based on geographic location and resources
+		. ability to shift more traffic to resources based on the defined bias

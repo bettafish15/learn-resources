@@ -1,0 +1,8 @@
+Replication (CRR & SRR)
+	+ must enable versioning in source and destination buckets
+	+ cross region replication
+	+ same region replication
+	+ buckets can be in different accounts
+	+ copying is async
+	+ must give proper IAM permissions to S3
+

@@ -1,0 +1,47 @@
+Object Encryption:
+	+ Server-Side Encryption (SSE):
+		- Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3) - Enabled by default
+			. Encryption type is AES-256
+			. Must set header "x-amz-server-side-encryption": "AES256"
+			. Enabled by default for new buckets & new objects
+
+		- Server-Side Encryption with KMS Keys stored in AWS KMS (SSE-KMS)
+			. because using KMS => user control + audit key usage using CloudTrail
+			. Must set header "x-amz-server-side-encryption": "aws:kms"
+			. impacted by KMS limits (upload => calls GenerateDataKey KMS API 
+									- download => Decrypt KMS API)
+			. KMS quota per sec (5500, 10000, 30000 req/s based on region) - can request a quota 
+				increase using Service Quotas Console
+		- Server-SIde Encryption with Customer-Provided Keys (SSE-C)
+			. S3 does NOT store the encryption key you provide
+			. HTTPS must be used
+			. encryption key must provided in HTTP headers for every HTTP request made
+	+ Client-Side Encryption:
+			. use client libraries such as Amazon S3 Client-Side Encryption Library
+			. must encrypt data before sending and decrypt after retrieving
+
+Encryption in transit (SSL/TLS)
+	+ HTTPS is recommended
+	+ HTTPS is mandatory for SSE-C
+
+CORS:
+	+ if a client makes a cross-origin request on our S3 - Bucket, we need to enable correct CORS headers
+
+MFA Delete:
+	+ Versioning must be enabled
+	+ Only the bucket owner (root account) can enable/disable MFA Delete
+	+ MFA will be required to: 
+		. Permanently delete an object version
+		. SuspendVersioning on the bucket
+	+ MFA won't be required to:
+		. Enable Versioning
+		. List deleted versions
+
+S3 Access Logs:
+	+ For audit purpose, you may want to log all access to S3 buckets
+	+ any request made to S3, from any acc, authorized or denied, will be logged into another S3 buckets
+	+ that data can be analyzed using data analysis tools...
+	+ the target logging bucket must be in the same AWS Region
+
+	*** Do not set your logging bucket to be the monitored bucket 
+		=> logging loop, bucket will grow exponentially

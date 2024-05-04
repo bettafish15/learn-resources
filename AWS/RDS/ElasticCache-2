@@ -1,0 +1,18 @@
+ElasticCache:
+	- IAM Authen for Redis
+	- IAM policies on ElasticCache are only used for AWS API-level securty
+	- Redis AUTH:
+		+ password/token when create redis cluster
+		+ extra level of security on top of security groups
+		+ support ssl in fight encryption
+
+Memcached:
+	- supports SASL-based authen (advanced)
+
+Patterns:
+	- Lazy loading: stale data
+	- write through: update redis when written in DB
+	- session store: has ttl
+
+
+Simple Authentication Security Layer (SASL)

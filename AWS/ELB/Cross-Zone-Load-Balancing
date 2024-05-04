@@ -1,0 +1,3 @@
+ALB: enabled by default (can be disabled at target group level), no charge for inter AZ data
+ELB & GWLB: disabled by default, pay charges for inter AZ data if enabled
+CLB: disabled by default, no charges for inter AZ

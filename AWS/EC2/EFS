@@ -1,0 +1,6 @@
+mounted on 100s of instances EC2
+works with ec2 instances in multiple AZ
+expensive(3x gp2), pay per use
+
+only for linux
+leverage EFS-IA (Infrequent Access) for cost savings

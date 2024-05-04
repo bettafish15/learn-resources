@@ -1,0 +1,5 @@
+Connection draining - de-registration delay: give time for EC2 to complete existing connections- request then shutdown
+	+ time to complete 'in-flight requests' while the instance is de-registering or unhealthy
+	+ stops sending new request to the instance which is de-registering
+	+ between 1 to 3600 sec (default 300 sec)
+	+ can be disabled (set to 0)

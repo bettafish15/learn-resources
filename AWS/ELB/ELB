@@ -1,0 +1,26 @@
+4 kinds of load balancer:
+	+ classic load balancer (v1 - old generation): year 2009 - CLB - HTTP, HTTPS, TCP, SSL 
+	+ application load balancer (v2 - new generation): year 2016 - ALB - HTTP, HTTPS, Websocket
+	+ Network load balancer (v2 - new generation): year 2017 - NLB - TCP, TLS , udp
+	+ Gateway Load Balancer - 2020 - GWLB - layer 3 network layer ip protocol
+
+the NLB supports HTTP health checks as well as TCP and HTTPS
+
+
+Gateway Load Balancer: uses the GENEVE protocol on port 6081
+
+Cross zone load balancing: 
+	+ only application load balancer is enabled by default.
+	+ inter AZ data is free
+
+
+Connection draining - deregistration delay
+	- time to complete 'in-flight requests' while the instance is de-registering or unhealthy
+
+Only Network Load Balancer provides both static DNS name and static IP. 
+While, Application Load Balancer provides a static DNS name but it does NOT provide a static IP. 
+The reason being that AWS wants your Elastic Load Balancer to be accessible using a static endpoint, 
+even if the underlying infrastructure that AWS manages changes.
+
+When you enable ELB Health Checks, your ELB won't send traffic to unhealthy (crashed) EC2 instances.
+

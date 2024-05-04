@@ -1,0 +1,7 @@
+Snapstart:
+	+ Improves your Lambda func perf up to 10x at no extra cost for Java 11 and above
+	+ When enabled, func is invoked from a pre-initialized state (no func init from scratch)
+	+ When you publ a new version:
+		- Lambda init your func
+		- Takes a snapshot of mem and disk state of the init func
+		- Snapshot is cached for low latency access
